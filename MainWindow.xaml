@@ -22,7 +22,7 @@
                                 <Button Content="New" Margin="10 10 10 0"/>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <Button Content="Load" Margin="10 10 10 0"/>
+                                <Button x:Name="LoadButton" Click="LoadButton_Click" Content="Load" Margin="10 10 10 0"/>
                                 <Button x:Name="ResetButton" Click="ResetButton_Click" Content="Reset" Margin="10 10 10 0"/>
                             </StackPanel>
                         </Grid>
@@ -36,15 +36,15 @@
                             <TextBlock VerticalAlignment="Bottom" Grid.Column="0" Margin="0 0 0 5" Text="Education" FontWeight="Bold"/>
                             <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="0 0 0 5" Text="If you are currently going to university, fill this" FontWeight="Bold"/>
                         </Grid>
-                       
-                        
+
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <StackPanel Grid.Column="0">
                                 <CheckBox Checked="PrimaryCheckBox_Checked" x:Name="PrimaryCheckBox" Content="Primary School"/>
                                 <CheckBox Checked="JuniorCheckBox_Checked" x:Name="JuniorCheckBox" Content="Junior High School"/>
@@ -73,12 +73,13 @@
 
                         <TextBlock Text="If you chose 'others', enter your university name here:"
                                    FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="OthersTextBox" Background="#fee" Margin="0 10"/>
+                        <TextBox x:Name="OthersTextBox" Margin="0 10" Background="#fee"/>
 
                         <TextBlock Text="Note" FontWeight="Bold" Margin="0 0 0 5"/>
 
                         <TextBox x:Name="NoteTextBox" Padding="2" Height="50" TextWrapping="Wrap"
-                                 AcceptsReturn="True" Margin="0 0 0 10"
+                                 AcceptsReturn="True"
+                                 Margin="0 0 0 10"
                                  VerticalScrollBarVisibility="Visible"/>
 
                         <TextBlock x:Name="SavedTextBlock" Text="Saved Data" FontWeight="Bold"
@@ -88,12 +89,44 @@
                                  AcceptsReturn="True"
                                  VerticalScrollBarVisibility="Visible"
                                  Visibility="Hidden"/>
-                        
+
                     </StackPanel>
                 </TabItem>
 
                 <TabItem Header="Personal">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="11*"/>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="142*"/>
+                            </Grid.ColumnDefinitions>
 
+                            <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
+                                <TextBlock Padding="2" Margin="0 10 10 10" Text="Name:" HorizontalAlignment="Right"/>
+                                <TextBlock Padding="2" Margin="0 10 10 10" Text="Family Name:" HorizontalAlignment="Right"/>
+                                <TextBlock Padding="2" Margin="0 10 10 10" Text="Age:" HorizontalAlignment="Right"/>
+                                <TextBlock Padding="2" Margin="0 10 10 10" Text="Student ID:" HorizontalAlignment="Right"/>
+
+                                <TextBlock Margin="0 10 10 10" Text="Equations:" HorizontalAlignment="Right"
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2">
+                                <TextBox Margin="10 10 0 10" Padding="2"/>
+                                <TextBox Margin="10 10 0 10" Padding="2"/>
+                                <TextBox Margin="10 10 0 10" Padding="2"/>
+                                <TextBox Margin="10 10 0 10" Padding="2"/>
+
+                                <RichTextBox x:Name="EquationRichTextBox"
+                                             Padding="2" Height="100"
+                                             AcceptsReturn="True"
+                                             Margin="0 0 0 10"
+                                             VerticalScrollBarVisibility="Visible"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
                 </TabItem>
             </TabControl>
         </StackPanel>

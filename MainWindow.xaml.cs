@@ -23,11 +23,13 @@ namespace WpfApp1
     {
         private string currentProjectPath;
         private string university;
+        string[] directoryFiles;
+
         public MainWindow()
         {
             InitializeComponent();
             currentProjectPath = Directory.GetCurrentDirectory().ToString();
-            this.OthersTextBox.IsReadOnly = false;
+            this.OthersTextBox.IsReadOnly = true;
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -48,7 +50,7 @@ namespace WpfApp1
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-         
+            
         }
 
         private void PrimaryCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -90,7 +92,10 @@ namespace WpfApp1
         private void UniversityComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selectedItemContent = ((ComboBoxItem)(((ComboBox)sender).SelectedValue)).Content.ToString();
-            if (selectedItemContent == "Others..")
+            if (this.OthersTextBox == null)
+                return;
+
+            if (selectedItemContent == "Others...")
             {
                 this.OthersTextBox.IsReadOnly = false;
             }
@@ -102,9 +107,9 @@ namespace WpfApp1
             }
         }
 
-        private void OthersTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-
+            directoryFiles = Directory.GetFiles(currentProjectPath, "*.txt");
         }
     }
 }
