@@ -111,5 +111,10 @@ namespace WpfApp1
         {
             directoryFiles = Directory.GetFiles(currentProjectPath, "*.txt");
         }
+
+        private void PictureButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

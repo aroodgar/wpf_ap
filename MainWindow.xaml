@@ -122,10 +122,26 @@
                                              Padding="2" Height="100"
                                              AcceptsReturn="True"
                                              Margin="0 0 0 10"
-                                             VerticalScrollBarVisibility="Visible"/>
+                                             VerticalScrollBarVisibility="Visible">
+                                </RichTextBox>
                             </StackPanel>
 
                         </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Content="Save" Click="SaveButton_Click" 
+                                    x:Name="SaveButton2" Margin="10 10 10 5"/>
+                            <Button Grid.Column="1" Content="Browse Picture" 
+                                    Click="PictureButton_Click" x:Name="PictureButton"
+                                    Margin="10 10 10 5"/>
+                        </Grid>
+
+                        <Image x:Name="ImageHolder" Height="200" Stretch="Uniform"/>
                     </StackPanel>
                 </TabItem>
             </TabControl>
