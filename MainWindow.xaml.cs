@@ -22,11 +22,12 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private string currentProjectPath;
+        private string university;
         public MainWindow()
         {
             InitializeComponent();
-            //MessageBox.Show("Welcome to my Program!", "Hello!");
             currentProjectPath = Directory.GetCurrentDirectory().ToString();
+            this.OthersTextBox.IsReadOnly = false;
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -84,6 +85,26 @@ namespace WpfApp1
         {
             this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = false;
+        }
+
+        private void UniversityComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedItemContent = ((ComboBoxItem)(((ComboBox)sender).SelectedValue)).Content.ToString();
+            if (selectedItemContent == "Others..")
+            {
+                this.OthersTextBox.IsReadOnly = false;
+            }
+            else
+            {
+                university = selectedItemContent;
+                this.OthersTextBox.Text = "";
+                this.OthersTextBox.IsReadOnly = true;
+            }
+        }
+
+        private void OthersTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

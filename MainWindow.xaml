@@ -34,7 +34,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock VerticalAlignment="Bottom" Grid.Column="0" Margin="0 0 0 5" Text="Education" FontWeight="Bold"/>
-                            <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="0 0 0 5" Text="If you go to university, fill this" FontWeight="Bold"/>
+                            <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="0 0 0 5" Text="If you are currently going to university, fill this" FontWeight="Bold"/>
                         </Grid>
                        
                         
@@ -58,7 +58,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
-                                <ComboBox x:Name="UniversityComboBox" SelectedIndex="0">
+                                <ComboBox SelectionChanged="UniversityComboBox_SelectionChanged" x:Name="UniversityComboBox" SelectedIndex="0">
                                     <ComboBoxItem Content="None"/>
                                     <ComboBoxItem Content="Sharif University"/>
                                     <ComboBoxItem Content="University of Tehran"/>
@@ -73,7 +73,7 @@
 
                         <TextBlock Text="If you chose 'others', enter your university name here:"
                                    FontWeight="Bold" Margin="0 10 0 0"/>
-                        <TextBox x:Name="OthersTextBox" Background="#eee" IsReadOnly="True" Margin="0 10"/>
+                        <TextBox x:Name="OthersTextBox" Background="#fee" Margin="0 10"/>
 
                         <TextBlock Text="Note" FontWeight="Bold" Margin="0 0 0 5"/>
 
