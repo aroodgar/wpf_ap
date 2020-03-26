@@ -18,7 +18,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <Button Content="Save" Margin="10 10 10 0"/>
+                                <Button x:Name="SaveButton" Content="Save" Margin="10 10 10 0" Click="SaveButton_Click"/>
                                 <Button Content="New" Margin="10 10 10 0"/>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
@@ -46,15 +46,15 @@
                             </Grid.ColumnDefinitions>
                             
                             <StackPanel Grid.Column="0">
-                                <CheckBox x:Name="PrimaryCheckBox" Content="Primary School"/>
-                                <CheckBox x:Name="JuniorCheckBox" Content="Junior High School"/>
-                                <CheckBox x:Name="HighCheckBox" Content="High School Diploma"/>
+                                <CheckBox Checked="PrimaryCheckBox_Checked" x:Name="PrimaryCheckBox" Content="Primary School"/>
+                                <CheckBox Checked="JuniorCheckBox_Checked" x:Name="JuniorCheckBox" Content="Junior High School"/>
+                                <CheckBox Checked="HighCheckBox_Checked" x:Name="HighCheckBox" Content="High School Diploma"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
-                                <CheckBox x:Name="BacherlorCheckBox" Content="Bachelor Degree"/>
-                                <CheckBox x:Name="MScCheckBox" Content="MSc Degree"/>
-                                <CheckBox x:Name="PHDCheckBox" Content="PHD"/>
+                                <CheckBox Checked="BacherlorCheckBox_Checked" x:Name="BacherlorCheckBox" Content="Bachelor Degree"/>
+                                <CheckBox Checked="MScCheckBox_Checked" x:Name="MScCheckBox" Content="MSc Degree"/>
+                                <CheckBox Checked="PHDCheckBox_Checked" x:Name="PHDCheckBox" Content="PHD"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace WpfApp1
 {
@@ -20,10 +21,12 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string currentProjectPath;
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Welcome to my Program!", "Hello!");
+            //MessageBox.Show("Welcome to my Program!", "Hello!");
+            currentProjectPath = Directory.GetCurrentDirectory().ToString();
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -40,6 +43,47 @@ namespace WpfApp1
 
             //reseting combobox
             this.UniversityComboBox.SelectedIndex = 0;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+         
+        }
+
+        private void PrimaryCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
+                this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+        }
+
+        private void JuniorCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked =
+                this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+        }
+
+        private void HighCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.BacherlorCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
+                this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+        }
+
+        private void BacherlorCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.PrimaryCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
+                this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+        }
+
+        private void MScCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
+                this.PrimaryCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+        }
+
+        private void PHDCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
+                this.MScCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = false;
         }
     }
 }
