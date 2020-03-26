@@ -25,5 +25,21 @@ namespace WpfApp1
             InitializeComponent();
             MessageBox.Show("Welcome to my Program!", "Hello!");
         }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            //unchecking checkboxes
+            this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked = this.MScCheckBox.IsChecked =
+                this.PHDCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = false;
+
+            //reseting textboxes
+            this.NoteTextBox.Text = this.OthersTextBox.Text = this.SavedTextBox.Text = "";
+            this.OthersTextBox.IsReadOnly = true;
+            this.SavedTextBox.Visibility = Visibility.Hidden;
+            this.SavedTextBlock.Visibility = Visibility.Hidden;
+
+            //reseting combobox
+            this.UniversityComboBox.SelectedIndex = 0;
+        }
     }
 }

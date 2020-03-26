@@ -23,7 +23,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <Button Content="Load" Margin="10 10 10 0"/>
-                                <Button Content="Reset" Margin="10 10 10 0"/>
+                                <Button x:Name="ResetButton" Click="ResetButton_Click" Content="Reset" Margin="10 10 10 0"/>
                             </StackPanel>
                         </Grid>
 
@@ -33,8 +33,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Margin="0 0 0 5" Text="Education" FontWeight="Bold"/>
-                            <TextBlock Grid.Column="1" Margin="0 0 0 5" Text="If You Go to University" FontWeight="Bold"/>
+                            <TextBlock VerticalAlignment="Bottom" Grid.Column="0" Margin="0 0 0 5" Text="Education" FontWeight="Bold"/>
+                            <TextBlock TextWrapping="Wrap" Grid.Column="1" Margin="0 0 0 5" Text="If you go to university, fill this" FontWeight="Bold"/>
                         </Grid>
                        
                         
@@ -46,41 +46,45 @@
                             </Grid.ColumnDefinitions>
                             
                             <StackPanel Grid.Column="0">
-                                <CheckBox Content="Primary School"/>
-                                <CheckBox Content="Junior High School"/>
-                                <CheckBox Content="High School Diploma"/>
+                                <CheckBox x:Name="PrimaryCheckBox" Content="Primary School"/>
+                                <CheckBox x:Name="JuniorCheckBox" Content="Junior High School"/>
+                                <CheckBox x:Name="HighCheckBox" Content="High School Diploma"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
-                                <CheckBox Content="Bachelor Degree"/>
-                                <CheckBox Content="MSc Degree"/>
-                                <CheckBox Content="PHD"/>
+                                <CheckBox x:Name="BacherlorCheckBox" Content="Bachelor Degree"/>
+                                <CheckBox x:Name="MScCheckBox" Content="MSc Degree"/>
+                                <CheckBox x:Name="PHDCheckBox" Content="PHD"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
-                                <ComboBox>
+                                <ComboBox x:Name="UniversityComboBox" SelectedIndex="0">
+                                    <ComboBoxItem Content="None"/>
                                     <ComboBoxItem Content="Sharif University"/>
                                     <ComboBoxItem Content="University of Tehran"/>
                                     <ComboBoxItem Content="Amirkabir University"/>
                                     <ComboBoxItem Content="IUST"/>
                                     <ComboBoxItem Content="Shahid Beheshti University"/>
                                     <ComboBoxItem Content="Khajehnasir University"/>
+                                    <ComboBoxItem Content="Others..."/>
                                 </ComboBox>
                             </StackPanel>
                         </Grid>
-                        
-                        <TextBox Background="#eee" IsReadOnly="True" Margin="0 10 0 10"/>
+
+                        <TextBlock Text="If you chose 'others', enter your university name here:"
+                                   FontWeight="Bold" Margin="0 10 0 0"/>
+                        <TextBox x:Name="OthersTextBox" Background="#eee" IsReadOnly="True" Margin="0 10"/>
 
                         <TextBlock Text="Note" FontWeight="Bold" Margin="0 0 0 5"/>
 
-                        <TextBox Padding="2" Height="50" TextWrapping="Wrap"
+                        <TextBox x:Name="NoteTextBox" Padding="2" Height="50" TextWrapping="Wrap"
                                  AcceptsReturn="True" Margin="0 0 0 10"
                                  VerticalScrollBarVisibility="Visible"/>
 
-                        <TextBlock Text="Saved Data" FontWeight="Bold"
+                        <TextBlock x:Name="SavedTextBlock" Text="Saved Data" FontWeight="Bold"
                                    Margin="0 0 0 10" Visibility="Hidden"/>
 
-                        <TextBox Padding="2" Height="200" TextWrapping="Wrap"
+                        <TextBox x:Name="SavedTextBox" Padding="2" Height="200" TextWrapping="Wrap"
                                  AcceptsReturn="True"
                                  VerticalScrollBarVisibility="Visible"
                                  Visibility="Hidden"/>
