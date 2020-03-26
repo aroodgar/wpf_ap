@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 
 namespace WpfApp1
 {
@@ -23,7 +24,8 @@ namespace WpfApp1
     {
         private string currentProjectPath;
         private string university;
-        string[] directoryFiles;
+        private string[] directoryFiles;
+        private string education;
 
         public MainWindow()
         {
@@ -51,43 +53,62 @@ namespace WpfApp1
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            string saveContent = "Name:" + NameTextBox.Text + "\nFamilyName:" + FamilyNameTextBox + 
+                "\nAge:" + AgeTextBox + "\nStudentID:" + StudentIDTextBox + "\n";
+            string selectedComboItem = ((ComboBoxItem)(this.UniversityComboBox.SelectedValue)).Content.ToString();
+            if(selectedComboItem == "None")
+            {
+                saveContent += ("Education:" + education + "\n");
+                saveContent += ("Note" + NoteTextBox.Text.ToString() + "\n");
+                saveContent += "***\n";
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt*)|*.txt";
+            saveFileDialog.InitialDirectory = currentProjectPath;
+            if (saveFileDialog.ShowDialog() == true)
+                File.WriteAllText(saveFileDialog.FileName, saveContent);
         }
 
         private void PrimaryCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+            education = "PrimarySchool";
         }
 
         private void JuniorCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+            education = "JuniorHighSchool";
         }
 
         private void HighCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             this.BacherlorCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+            education = "HighSchool";
         }
 
         private void BacherlorCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             this.PrimaryCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+            education = "BachelorDegree";
         }
 
         private void MScCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.PrimaryCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
+            education = "MScEducation";
         }
 
         private void PHDCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             this.BacherlorCheckBox.IsChecked = this.HighCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = false;
+            education = "PHD";
         }
 
         private void UniversityComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -110,12 +131,29 @@ namespace WpfApp1
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            directoryFiles = Directory.GetFiles(currentProjectPath, "*.txt");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt*)|*.txt";
+            openFileDialog.InitialDirectory = currentProjectPath;
+            if(openFileDialog.ShowDialog() == true)
+            {
+                this.SavedTextBlock.Visibility = Visibility.Visible;
+                this.SavedTextBox.Visibility = Visibility.Visible;
+                this.SavedTextBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
         }
 
         private void PictureButton_Click(object sender, RoutedEventArgs e)
         {
-            ImageHolder.Source = new BitmapImage(new Uri(currentProjectPath + @"\download.png", UriKind.Relative));
+            //ImageHolder.Source = new BitmapImage(new Uri(currentProjectPath + @"\download.png", UriKind.Relative));
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = currentProjectPath;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                ImageHolder.Source = new BitmapImage(fileUri);
+            }
         }
     }
 }
