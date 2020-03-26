@@ -29,6 +29,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             currentProjectPath = Directory.GetCurrentDirectory().ToString();
+            MessageBox.Show(currentProjectPath);
             this.OthersTextBox.IsReadOnly = true;
         }
 
@@ -114,7 +115,7 @@ namespace WpfApp1
 
         private void PictureButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ImageHolder.Source = new BitmapImage(new Uri(currentProjectPath + @"\download.png", UriKind.Relative));
         }
     }
 }
