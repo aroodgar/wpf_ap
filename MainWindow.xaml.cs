@@ -149,7 +149,8 @@ namespace WpfApp1
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt*)|*.txt";
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Text Files (*.txt*)|*.txt";
             openFileDialog.InitialDirectory = currentProjectPath;
             if(openFileDialog.ShowDialog() == true)
             {
@@ -161,10 +162,9 @@ namespace WpfApp1
 
         private void PictureButton_Click(object sender, RoutedEventArgs e)
         {
-            //ImageHolder.Source = new BitmapImage(new Uri(currentProjectPath + @"\download.png", UriKind.Relative));
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = false;
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image Files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = currentProjectPath;
             if (openFileDialog.ShowDialog() == true)
             {
@@ -178,5 +178,22 @@ namespace WpfApp1
             education = "";
         }
 
+        private void EquationButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Rich Text Files (*.rtf*)|*.rtf";
+            openFileDialog.InitialDirectory = currentProjectPath;
+            if(openFileDialog.ShowDialog() == true)
+            {
+                string rtfText = File.ReadAllText(openFileDialog.FileName);
+
+                //converting to RTF
+                MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(rtfText));
+                this.EquationRichTextBox.Selection.Load(stream, DataFormats.Rtf);
+
+                EquationRichTextBox.Document.Blocks.Add(new Paragraph(new Run(rtfText)));
+            }
+        }
     }
 }

@@ -109,7 +109,8 @@
                                 <TextBlock Padding="2" Margin="0 10 10 10" Text="Age:" HorizontalAlignment="Right"/>
                                 <TextBlock Padding="2" Margin="0 10 10 10" Text="Student ID:" HorizontalAlignment="Right"/>
 
-                                <Button Margin="10 20 10 0" Content="Add Equation" />
+                                <Button Margin="10 20 10 0" Content="Add Equation" x:Name="EquationButton"
+                                        Click="EquationButton_Click"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
