@@ -23,15 +23,13 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private string currentProjectPath;
-        private string university;
-        private string[] directoryFiles;
-        private string education;
+        private string university = "";
+        private string education = "";
 
         public MainWindow()
         {
             InitializeComponent();
             currentProjectPath = Directory.GetCurrentDirectory().ToString();
-            MessageBox.Show(currentProjectPath);
             this.OthersTextBox.IsReadOnly = true;
         }
 
@@ -49,19 +47,38 @@ namespace WpfApp1
 
             //reseting combobox
             this.UniversityComboBox.SelectedIndex = 0;
+
+            //reseting personal tab textboxes and richtextbox
+            this.NameTextBox.Text = "";
+            this.FamilyNameTextBox.Text = "";
+            this.AgeTextBox.Text = "";
+            this.StudentIDTextBox.Text = "";
+            this.EquationRichTextBox.Document.Blocks.Clear();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            string saveContent = "Name:" + NameTextBox.Text + "\nFamilyName:" + FamilyNameTextBox + 
-                "\nAge:" + AgeTextBox + "\nStudentID:" + StudentIDTextBox + "\n";
+            string saveContent = "Name:" + NameTextBox.Text + "\nFamilyName:" + FamilyNameTextBox.Text + 
+                "\nAge:" + AgeTextBox.Text + "\nStudentID:" + StudentIDTextBox.Text + "\n";
             string selectedComboItem = ((ComboBoxItem)(this.UniversityComboBox.SelectedValue)).Content.ToString();
             if(selectedComboItem == "None")
             {
-                saveContent += ("Education:" + education + "\n");
-                saveContent += ("Note" + NoteTextBox.Text.ToString() + "\n");
-                saveContent += "***\n";
+                university = "None";
             }
+            else if(selectedComboItem == "Others...")
+            {
+                university = this.OthersTextBox.Text;
+            }
+            else
+            {
+                university = selectedComboItem;
+            }
+
+            saveContent += ("Education:" + education + "\n");
+            saveContent += ("University:" + university + "\n");
+            saveContent += ("Note:" + NoteTextBox.Text + "\n");
+            saveContent += "***\n";
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text files (*.txt*)|*.txt";
             saveFileDialog.InitialDirectory = currentProjectPath;
@@ -87,7 +104,7 @@ namespace WpfApp1
         {
             this.BacherlorCheckBox.IsChecked = this.PrimaryCheckBox.IsChecked = this.JuniorCheckBox.IsChecked =
                 this.MScCheckBox.IsChecked = this.PHDCheckBox.IsChecked = false;
-            education = "HighSchool";
+            education = "HighSchoolDiploma";
         }
 
         private void BacherlorCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -138,7 +155,7 @@ namespace WpfApp1
             {
                 this.SavedTextBlock.Visibility = Visibility.Visible;
                 this.SavedTextBox.Visibility = Visibility.Visible;
-                this.SavedTextBox.Text = File.ReadAllText(openFileDialog.FileName);
+                this.SavedTextBox.Text += File.ReadAllText(openFileDialog.FileName);
             }
         }
 
@@ -155,5 +172,11 @@ namespace WpfApp1
                 ImageHolder.Source = new BitmapImage(fileUri);
             }
         }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            education = "";
+        }
+
     }
 }
