@@ -24,7 +24,7 @@ select * from customers;
 
 describe customers;
 
-delete from customers where nationalid='6599927531';
+-- delete from customers where nationalid='******';
 
 alter table users
 rename to customers;
@@ -34,7 +34,7 @@ update customers set votestring='';
 alter table customers
 add column votestring varchar(100) not null after passcode;
 
-update customers set votestring='' where nationalid='6599927531';
+-- update customers set votestring='' where nationalid='******';
 
-insert into users (firstname, lastname, address, email, phonenumber, nationalid, passcode) values
-('Amirhossein', 'Roudgar', 'Tehran', '2000amir1379@gmail.com', '09199145913', '0023630000', '20amir79%');
+-- insert into users (firstname, lastname, address, email, phonenumber, nationalid, passcode) values
+-- ('Amirhossein', 'Roudgar', 'Tehran', '2000amir1379@gmail.com', '*****', '******', '*****');
