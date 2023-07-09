@@ -1,8 +1,0 @@
-Name:Amirhossein
-FamilyName:Roudgar
-Age:19
-StudentID:98521207
-Education:HighSchoolDiploma
-University:IUST
-Note:Computer Engineer student
-***
