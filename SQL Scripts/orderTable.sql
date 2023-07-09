@@ -29,7 +29,7 @@ describe orders;
 
 select * from orders;
 
-insert into orders (id, personid, foodstring, deliverdate, orderdate, ordertype, discount, totalprice) values
-('ABCD', '0023630000', 'A-3-50', '8/8/2020', '7/5/2020', 'B', 0, 50);
+-- insert into orders (id, personid, foodstring, deliverdate, orderdate, ordertype, discount, totalprice) values
+-- ('ABCD', '*******', 'A-3-50', '8/8/2020', '7/5/2020', 'B', 0, 50);
 
 update orders set orderdate='7/5/2020 2:00:00 PM' , deliverdate='8/8/2020 9:00:00 AM' where id='ABCD';
