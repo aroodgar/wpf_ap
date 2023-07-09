@@ -17,7 +17,7 @@ describe carts;
 select * from carts;
 
 insert into carts (personid, foodstring, deliverdate, registerdate) values
-	('0023630000', '', '', '');
+	('*******', '', '', '');
 
 alter table carts
 add column deliverdate varchar(20) not null after foodstring;
